@@ -1,0 +1,31 @@
+name: Pelican Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy code
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          username: ${{ secrets.SSH_USERNAME }}
+
+          script: |
+            git clone git@github.com:ryancheley/gamemisconduct.fm.git
+
+            source venv/bin/activate
+
+            cp -r gamemisconduct.fm/* .
+
+            pip install -r requirements.txt
+
+            pelican content -s publishconf.py
+
+            rm -rf gamemisconduct.com/
