@@ -22,7 +22,7 @@ jobs:
 
             source venv/bin/activate
 
-            cp -r gamemisconduct.fm/* .
+            rsync -av --delete --exclude=.env gamemisconduct.fm/* .
 
             pip install -r requirements.txt
 
