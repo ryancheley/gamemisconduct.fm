@@ -1,3 +1,4 @@
 markdown
 pelican
 pip-tools
+pre-commit
