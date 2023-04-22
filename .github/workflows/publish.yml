@@ -27,5 +27,5 @@ jobs:
             pip install -r requirements.txt
 
             pelican content -s publishconf.py
-
-            rm -rf gamemisconduct.com/
+            
+            rm -rf gamemisconduct.fm/
